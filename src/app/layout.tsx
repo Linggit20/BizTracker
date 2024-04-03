@@ -4,6 +4,8 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import "./globals.css"
 
+import { ThemeProvider } from "@/components/ThemeProvider"
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -19,11 +21,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`min-h-screen bg-background ${inter.className}`}>
-        <div className="flex min-h-screen flex-col bg-background">
-          <Header />
-          {children}
-          <Footer />
-        </div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="flex min-h-screen flex-col bg-background">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )
